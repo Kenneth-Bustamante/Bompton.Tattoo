@@ -41,7 +41,7 @@ html {
 /* SECCIÓN INICIO */
 #inicio {
     background: linear-gradient(to top, rgba(30, 35, 38, 0.8), rgba(30, 35, 38, 0.2)), 
-                url('../Bompton.Tattoo/IMG/fondo.png') no-repeat center center/cover;
+                url('../ASSETS/fondo.png') no-repeat center center/cover;
     height: 100vh;
     color: #fff;
     display: flex;
@@ -117,61 +117,12 @@ html {
     display: inline-block;
 }
 
-#sobremi .contenedor-intereses {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    padding: 20px;
-}
-
-#sobremi .intereses {
-    background-color: #252a2e;
-    border-radius: 12px;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-}
-
-#sobremi .intereses i {
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
-
-#sobremi .intereses:hover {
-    background-color: #1CB698;
-    transform: scale(1.1);
-    color: black;
-}
-
-@media (max-width: 768px) {
-    .list-unstyled li {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-    }
-
-    .list-unstyled li strong {
-        display: block;
-        font-weight: bold;
-    }
-}
-
 /* SECCIÓN SKILLS */
 #skills {
     background-color: #252a2e;
     color: #fff;
     padding: 50px 20px;
 }
-
 #skills h2 {
     font-family: 'Righteous', sans-serif;
     font-size: 48px;
@@ -232,41 +183,238 @@ html {
 }
 
 /* SECCIÓN PORTAFOLIO */
-.portafolio{
+.portafolio {
     background-color: #252a2e;
     color: #fff;
     padding: 50px 20px;
 }
 
-.portafolio .contenido-seccion{
+.portafolio .contenido-seccion {
     max-width: 1100px;
     margin: auto;
 }
 
-.portafolio h2{
+.portafolio h2 {
     font-size: 48px;
     font-family: 'Righteous';
     text-align: center;
     padding: 20px 0;
 }
 
-.portafolio .galeria{
+.portafolio .galeria {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.portafolio .galeria .card{
+.portafolio .galeria .card {
     position: relative;
     max-width: 340px;
     height: fit-content;
     margin: 50px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.portafolio .galeria .card img{
+.portafolio .galeria .card img {
     width: 100%;
     display: block;
+}
+
+/* ===================== */
+/* LIGHTBOX */
+/* ===================== */
+
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+/* Contenido */
+.lightbox-content {
+  display: flex;
+  gap: 30px;
+  max-width: 900px;
+  width: 90%;
+  background: #1e2326;
+  padding: 30px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.lightbox-info {
+  color: #fff;
+  max-width: 350px;
+}
+
+.lightbox-info h3 {
+  font-family: "Righteous";
+  font-size: 26px;
+  margin-bottom: 15px;
+}
+
+.lightbox-info p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.tattoo-descripcion {
+  margin-top: 15px;
+  font-style: italic;
+  color: #aaa;
+}
+
+/* Animación (solo al abrir; la imagen igual cambia bien) */
+@keyframes zoomIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+#lightbox .lightbox-content {
+  animation: zoomIn 0.2s ease;
+}
+
+/* ===================== */
+/* BOTONES SLIDER */
+/* ===================== */
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55px;
+  height: 55px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 28px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+}
+
+#lightbox-prev { left: 25px; }
+#lightbox-next { right: 25px; }
+
+.lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===================== */
+/* ZOOM + PAN */
+/* ===================== */
+
+.lightbox-figure {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+#lightbox-img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  user-select: none;
+  -webkit-user-drag: none;
+
+  cursor: zoom-in;
+  transform-origin: center center;
+  transition: transform 0.08s linear;
+}
+
+#lightbox-img.is-zoomed {
+  cursor: grab;
+}
+
+#lightbox-img.is-zoomed:active {
+  cursor: grabbing;
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+@media (max-width: 768px) {
+  .lightbox-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .lightbox-info {
+    max-width: 100%;
+  }
+  #lightbox-img {
+    max-width: 100%;
+  }
+  .lightbox-figure {
+    max-width: 100%;
+  }
+}
+
+/* SECCIÓN CALENDARIO */
+#calendario {
+    background-color: #1e2326;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#calendario h2 {
+    font-family: 'Righteous', sans-serif;
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #1CB698;
+}
+
+#calendario p {
+    font-size: 18px;
+    color: #bbbdbe;
+    margin-bottom: 40px;
+}
+
+#calendario .contenedor-calendario {
+    max-width: 1000px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#calendario .contenedor-calendario:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 25px rgba(28, 182, 152, 1);
+}
+
+#calendario iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
 }
 
 /* SECCIÓN CONTACTO */
@@ -464,6 +612,3 @@ footer .arriba{
         font-size: 36px;
     }
 }
-
-
-
