@@ -17,7 +17,7 @@ html {
 
 .navbar-brand img {
     height: auto;
-    max-height: 110px; 
+    max-height: 95px; 
     width: auto;
 }
 
@@ -612,4 +612,5 @@ footer .arriba{
         font-size: 36px;
     }
 }
+
 
